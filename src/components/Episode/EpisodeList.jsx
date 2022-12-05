@@ -10,7 +10,7 @@ const EpisodeList = ({ episodeList }) => {
   return (
       <>
       <h1>Episodes:</h1>
-        <div className='flex flex-wrap flex-column justify-center'>
+        <div className='flex flex-wrap flex-column'>
         {sortedEpisodeList.map(episode => (
             <EpisodeCard key = {episode.episodeId} episode={episode}/>
         ))}

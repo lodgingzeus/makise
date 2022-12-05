@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import Searchbar from '../Searchbar/Searchbar'
 
 const Navbar = () => {
@@ -8,11 +8,13 @@ const Navbar = () => {
         <div className="max-w-5xl mx-auto px-4">
             <div className="flex items-center justify-between h-16">
             <NavLink to={'/'}>
-            <span className="text-2xl text-gray-900 font-semibold">Makise</span>
+            <span className="text-2xl  font-semibold">Makise</span>
             </NavLink>
-            <div className="flex space-x-4 text-gray-900">
+            <div className="flex space-x-4 ">
                 <p>Top</p>
-                <p>Movies</p>
+                <Link to = {'/movies/page=1'}>
+                  <p>Movies</p>
+                </Link>
                 <p>Genres</p>
                 <p>Top Airing</p>
             </div>
