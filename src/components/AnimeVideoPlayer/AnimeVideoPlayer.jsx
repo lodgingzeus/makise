@@ -10,6 +10,7 @@ const AnimeVideoPlayer = ( { anime }) => {
             height="85%"
             alt="Video Not Available"
             controls={true}
+            // playbackRate = {2}
         />
     </div>
   )

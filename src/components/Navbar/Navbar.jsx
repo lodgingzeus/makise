@@ -12,7 +12,7 @@ const Navbar = () => {
             </NavLink>
             <div className="flex space-x-4 ">
                 <p>Top</p>
-                <Link to = {'/movies/page=1'}>
+                <Link to = {'/movies/1'}>
                   <p>Movies</p>
                 </Link>
                 <p>Genres</p>
