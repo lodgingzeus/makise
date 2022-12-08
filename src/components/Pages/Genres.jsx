@@ -4,32 +4,33 @@ import { useParams, useNavigate } from 'react-router-dom'
 import AnimeCard from '../AnimeCard/AnimeCard'
 import Loader from '../Loader/Loader'
 
-const Movies = () => {
+const Genres = () => {
 
-    const { id } = useParams()
+    const { id, genre } = useParams()
+    console.log(id, genre)
     let idToNavigate = Number(id)
     const navigate = useNavigate()
 
-    const [ movies, setMovies ] = useState([])
+    const [ genres, setGenres ] = useState([])
     const [ isLoading, setIsLoading ] = useState(true)
 
     useEffect(() => {
-        fetchFromAPI(`anime-movies?page=${id}`)
+        fetchFromAPI(`genre/${genre}?page=${id}`)
         .then(data => {
-            setMovies(data)
+            setGenres(data)
             setIsLoading(false)
         })
-    }, [id])
+    }, [id, genre])
 
     const Back = () => {
         if(id === 1) return
         console.log(idToNavigate)
-        navigate(`/movies/${idToNavigate - 1}`)
+        navigate(`/${genre}/${idToNavigate - 1}`)
     }
 
     const Next = () => {
         if(id > 50) return
-        navigate(`/movies/${idToNavigate + 1}`)
+        navigate(`/${genre}/${idToNavigate + 1}`)
     }
 
   return (
@@ -39,7 +40,7 @@ const Movies = () => {
             <div className='flex flex-wrap flex-row gap-2'>
             <h1>Anime Movies</h1>
             <div className='flex flex-wrap'>
-                {movies.map(anime => (
+                {genres.map(anime => (
                 <AnimeCard key={anime.animeId} anime = {anime} width = {`150px`}/>
                 ))}
             </div>
@@ -53,4 +54,4 @@ const Movies = () => {
   )
 }
 
-export default Movies
+export default Genres
