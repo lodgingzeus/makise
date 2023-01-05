@@ -15,7 +15,9 @@ const Navbar = () => {
                 <Link to = {'/movies/1'}>
                   <p>Movies</p>
                 </Link>
-                <p>Genres</p>
+                <Link to = { `/genres`}>
+                  <p>Genres</p>                
+                </Link>
                 <p>Top Airing</p>
             </div>
                 <Searchbar />

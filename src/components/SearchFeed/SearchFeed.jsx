@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { fetchFromAPI } from '../../utils/fetchFromAPI'
 import AnimeCard from '../AnimeCard/AnimeCard'
 import Loader from '../Loader/Loader'
@@ -7,6 +7,7 @@ import Loader from '../Loader/Loader'
 const SearchFeed = () => {
 
     const { id } = useParams()
+    const navigate = useNavigate()
 
     const [ isLoading, setIsLoading ] = useState(true)
     const [ anime, setAnime ] = useState([])
@@ -14,10 +15,11 @@ const SearchFeed = () => {
     useEffect(() => {
         fetchFromAPI(`search?keyw=${id}`)
         .then(data =>{
+            if(data.error) return navigate(`/error`)
             setAnime(data)
             setIsLoading(false)
         })
-    }, [id])
+    }, [id, navigate])
 
   return (
     <>

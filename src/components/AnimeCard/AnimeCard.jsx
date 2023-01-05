@@ -8,7 +8,7 @@ const AnimeCard = ( { anime: { animeImg, animeTitle, animeId}, width } ) => {
   }
 
   return (
-    <div className={`w-[150px] m-1`}>
+    <div className={`w-[150px] m-1 hover:text-blue-500 hover:scale-110 transition-all`}>
         <Link to={`/anime/${animeId}`}>
         <img src={animeImg} alt="" className={`w-[150px] h-auto`}/>
           {animeTitle}

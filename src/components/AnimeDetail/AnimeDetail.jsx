@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { fetchFromAPI } from '../../utils/fetchFromAPI'
 import EpisodeList from '../Episode/EpisodeList'
 import GenreCard from '../Genre/GenreCard'
@@ -11,14 +11,16 @@ const AnimeDetail = () => {
     const [ isLoading, setIsLoading ] = useState(true)
 
     const { id } = useParams()
+    const navigate = useNavigate()
 
     useEffect(() => {
         fetchFromAPI(`anime-details/${id}`)
         .then(data => { 
+          if(data.error) return navigate(`/error`)
             setAnimeDetail(data)
             setIsLoading(false)
           })
-    }, [id])
+    }, [id, navigate])
 
   return (
     <>

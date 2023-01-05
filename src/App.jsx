@@ -4,8 +4,8 @@ import AnimeDetail from './components/AnimeDetail/AnimeDetail'
 import Navbar from './components/Navbar/Navbar'
 import AnimeEpisode from './components/Episode/AnimeEpisode'
 import SearchFeed from './components/SearchFeed/SearchFeed'
-import Movies from './components/Pages/Movies'
-import Genres from './components/Pages/Genres'
+import { Movies, Genres, GenresPage, ErrorPage } from './components/Pages'
+
 
 const App = () => {
 
@@ -19,7 +19,9 @@ const App = () => {
             <Route path="/watch/:id" element = {<AnimeEpisode />}/>
             <Route path="/search/:id" element = {<SearchFeed />}/>
             <Route path="/movies/:id" element = {<Movies />}/>
-            <Route path="/:genre/:id" element = {<Genres />}/>
+            <Route path="/:genres/:id" element = {<Genres />}/>
+            <Route path="/genres" element = {<GenresPage />}/>
+            <Route path="/error" element = {<ErrorPage />}/>
         </Routes>
     </BrowserRouter>
     </>

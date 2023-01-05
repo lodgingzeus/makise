@@ -16,10 +16,11 @@ const Movies = () => {
     useEffect(() => {
         fetchFromAPI(`anime-movies?page=${id}`)
         .then(data => {
+            if(data.error) return navigate(`/error`)
             setMovies(data)
             setIsLoading(false)
         })
-    }, [id])
+    }, [id, navigate])
 
     const Back = () => {
         if(id === 1) return

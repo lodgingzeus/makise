@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { fetchFromAPI } from '../../utils/fetchFromAPI'
 import AnimeVideoPlayer from '../AnimeVideoPlayer/AnimeVideoPlayer'
 import Loader from '../Loader/Loader'
@@ -8,6 +8,7 @@ import EpisodeList from './EpisodeList'
 const AnimeEpisode = () => {
 
     const { id } = useParams()
+    const navigate = useNavigate()
 
     const [ isLoading, setIsLoading ] = useState(true)
     const [ episodeList, setEpisodeList ] = useState([])
@@ -17,14 +18,18 @@ const AnimeEpisode = () => {
 
     useEffect(() => {
         fetchFromAPI(`vidcdn/watch/${id}`)
-        .then(data => setVideo(data?.sources[0]?.file))
+        .then(data => { 
+          if(data.error) return navigate(`/error`)
+          setVideo(data?.sources[0]?.file)
+        })
 
         fetchFromAPI(`anime-details/${animeId}`)
         .then(data => {
+          if(data.error) return navigate(`/error`)
           setEpisodeList(data?.episodesList)
           setIsLoading(false)
         })
-    }, [id, animeId])
+    }, [id, animeId, navigate])
 
   return (
     <>
